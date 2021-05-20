@@ -56,6 +56,10 @@ public class Rieltor
     @Getter
     private String email;
 
+    @Getter
+    @Setter
+    private Passport passport;
+
     @Setter
     @Getter
     private RieltorStatusEnum status;

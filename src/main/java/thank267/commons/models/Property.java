@@ -1,7 +1,9 @@
 package thank267.commons.models;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;
@@ -121,7 +123,7 @@ public class Property  {
 	
 	@Getter
 	@Setter
-	public String district;
+	private String district;
 
 	@Getter
 	@Setter
@@ -479,21 +481,6 @@ public class Property  {
     		
 	}
 	
-    
-    
-
-
-    
-
-     
-
-     
-    
-
-
-    
-    
-    
     public Double getLat() {
 		return getGeo().getCoordinates().get(1);
 	}
@@ -501,15 +488,24 @@ public class Property  {
 	public Double getLon() {
 		return getGeo().getCoordinates().get(0);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public Set<String> getCommonTags() {
+
+		Set<String> tags = new LinkedHashSet<>();
+
+		tags.add("Недвижимость");
+
+		tags.add(getAddress().getCity());
+
+		Optional.ofNullable(getDistrict()).ifPresent(district -> tags.add(district));
+
+		if (getType().equals("kvartira-v-arendu"))
+			tags.add(getSalePropetry());
+
+		tags.add(getAddress().getStreet());
+
+		return tags;
+
+	}
 	
 }

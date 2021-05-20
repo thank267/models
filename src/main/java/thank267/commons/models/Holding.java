@@ -8,9 +8,8 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 public class Holding {
 
 	private final String logoBase64 = "data:image/png;base64,";
@@ -75,8 +74,10 @@ public class Holding {
 		
 		Document tmpGeo  = doc.get("geo", Document.class);
 		
-		List<Double> coordinates = (List<Double>) tmpGeo.get("coordinates");
-		
+		List<Double> coordinates;
+		//noinspection JoinDeclarationAndAssignmentJava
+		coordinates = (List<Double>) tmpGeo.get("coordinates");
+
 		setGeo(new GeoJsonPoint(coordinates.get(0), coordinates.get(1)));
 		
 		setLogo(doc.getString("logo"));

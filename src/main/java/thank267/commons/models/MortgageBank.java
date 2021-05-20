@@ -9,9 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
+
 @ToString(onlyExplicitlyIncluded = true)
 @Document(collection = "mortgageBank")
 public class MortgageBank {
